@@ -65,6 +65,16 @@ class AppointmentController {
     }
 
     /**
+     * check if the user is scheduling with myself
+     */
+
+    if (provider_id === req.userId) {
+      return res
+        .status(401)
+        .json({ error: 'You not appointment with yourself' });
+    }
+
+    /**
      * Check for past date
      */
     const hourStart = startOfHour(parseISO(date));
